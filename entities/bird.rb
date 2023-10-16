@@ -90,7 +90,7 @@ class Bird
                     @highscore = @score
                 end
             end
-            if @highscore.to_s > @g
+            if @highscore > @g.to_i
                 h = File.open("./highscore.txt","w")
                 h.write(@highscore)
             end
