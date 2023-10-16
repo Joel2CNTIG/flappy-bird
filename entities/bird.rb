@@ -1,8 +1,9 @@
 class Bird
 
     attr_reader :score, :highscore, :crashed
-    def initialize(x, y, w, h, pipe, crashed)
+    def initialize(x, y, w, h, pipe, pipe2, crashed)
         @pipe = pipe
+        @pipe2 = pipe2
         @x = x
         @y = y
         @w = w
@@ -34,9 +35,12 @@ class Bird
                 @y_speed = 0
                 @x = @w/2 - 47.5
                 @y = @h/2 - 29.5
-                @pipe.x = 1200
+                @pipe.x = @pipe.x_start
+                @pipe2.x = @pipe2.x_start
                 @pipe.y_pipe1 = rand((@h +400 -714)..(@h +700 -714))
                 @pipe.y_pipe2 = @pipe.y_pipe1-714 -150
+                @pipe2.y_pipe1 = rand((@h +400 -714)..(@h +700 -714))
+                @pipe2.y_pipe2 = @pipe2.y_pipe1-714 -150
                 @score = 0
                 @crashed = false
             end
@@ -78,13 +82,11 @@ class Bird
                 @y = @h/2 - 29.5
                 @score = 0
             end
-            if ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe.x-36.5)..(@pipe.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe.x-36.5)..(@pipe.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).first <= ((@pipe.y_pipe1)..(@pipe.y_pipe1+714)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).last >= ((@pipe.y_pipe1)..(@pipe.y_pipe1+714)).first
+            if ((((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe.x-36.5)..(@pipe.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe.x-36.5)..(@pipe.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).first <= ((@pipe.y_pipe1)..(@pipe.y_pipe1+714)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).last >= ((@pipe.y_pipe1)..(@pipe.y_pipe1+714)).first) || (((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe2.x-36.5)..(@pipe2.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe2.x-36.5)..(@pipe2.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).first <= ((@pipe2.y_pipe1)..(@pipe2.y_pipe1+714)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).last >= ((@pipe2.y_pipe1)..(@pipe2.y_pipe1+714)).first)) || ((((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe.x-36.5)..(@pipe.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe.x-36.5)..(@pipe.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).first <= ((@pipe.y_pipe2)..(@pipe.y_pipe2+680)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).last >= ((@pipe.y_pipe2-40)..(@pipe.y_pipe2+680)).first) || (((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe2.x-36.5)..(@pipe2.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe2.x-36.5)..(@pipe2.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).first <= ((@pipe2.y_pipe2)..(@pipe2.y_pipe2+680)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).last >= ((@pipe2.y_pipe2-40)..(@pipe2.y_pipe2+680)).first))
                 @crashed = true
             end
-            if ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe.x-36.5)..(@pipe.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe.x-36.5)..(@pipe.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).first <= ((@pipe.y_pipe2)..(@pipe.y_pipe2+680)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).last >= ((@pipe.y_pipe2-40)..(@pipe.y_pipe2+680)).first
-                @crashed = true
-            end
-            if @pipe.x == @x
+
+            if @pipe.x == 350 || @pipe2.x == 350
                 @score += 1
                 if @score > @highscore
                     @highscore = @score

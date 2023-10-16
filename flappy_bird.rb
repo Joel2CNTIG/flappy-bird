@@ -9,8 +9,9 @@ class Game < Gosu::Window
         @h = 600
         super(@w,@h)
         @background = Gosu::Image.new("img/flappy_bg.png")
-        @pipes = Pipes.new(@w, @h, @y_pipe1, @y_pipe2)
-        @bird = Bird.new(@w/2 - 47.5, @h/2 - 29.5, @w, @h, @pipes, false)
+        @pipes = Pipes.new(@w, @h, @y_pipe1, @y_pipe2, 1200)
+        @pipes2 = Pipes.new(@w, @h, @y_pipe1, @y_pipe2, 1800)
+        @bird = Bird.new(@w/2 - 47.5, @h/2 - 29.5, @w, @h, @pipes, @pipes2, false)
         self.caption = "flappy_bird"
         @font = Gosu::Font.new(self, Gosu::default_font_name, 20)
         @started = 0
@@ -22,6 +23,7 @@ class Game < Gosu::Window
             @bird.update
             unless @bird.crashed
                 @pipes.update
+                @pipes2.update
             end
         end
     end
@@ -31,6 +33,7 @@ class Game < Gosu::Window
         @font.draw("#{@bird.score} | #{@bird.highscore}", @w-60, 40, 1, 1.0, 1.0)
         @bird.draw
         @pipes.draw
+        @pipes2.draw
     end
 end
 
