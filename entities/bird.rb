@@ -76,11 +76,8 @@ class Bird
                 @is_helddown = 0
             end
             if @y + 29.5 >= @w
-                sleep(2)
-                @y_speed = 0
-                @x = @w/2 - 47.5
-                @y = @h/2 - 29.5
-                @score = 0
+                sleep(1)
+                @crashed = true
             end
             if ((((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe.x-36.5)..(@pipe.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe.x-36.5)..(@pipe.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).first <= ((@pipe.y_pipe1)..(@pipe.y_pipe1+714)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).last >= ((@pipe.y_pipe1)..(@pipe.y_pipe1+714)).first) || (((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe2.x-36.5)..(@pipe2.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe2.x-36.5)..(@pipe2.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).first <= ((@pipe2.y_pipe1)..(@pipe2.y_pipe1+714)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high)).last >= ((@pipe2.y_pipe1)..(@pipe2.y_pipe1+714)).first)) || ((((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe.x-36.5)..(@pipe.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe.x-36.5)..(@pipe.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).first <= ((@pipe.y_pipe2)..(@pipe.y_pipe2+680)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).last >= ((@pipe.y_pipe2-40)..(@pipe.y_pipe2+680)).first) || (((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).first <= ((@pipe2.x-36.5)..(@pipe2.x+36.5)).last && ((@x+@hitbox_x_low)..(@x+@hitbox_x_high)).last >= ((@pipe2.x-36.5)..(@pipe2.x+36.5)).first && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).first <= ((@pipe2.y_pipe2)..(@pipe2.y_pipe2+680)).last && ((@y+@hitbox_y_low)..(@y+@hitbox_y_high+11)).last >= ((@pipe2.y_pipe2-40)..(@pipe2.y_pipe2+680)).first))
                 @crashed = true
